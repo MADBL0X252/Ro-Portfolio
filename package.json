@@ -1,0 +1,13 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "serve . -p 3000",
+    "build": "node -e \"const fs=require('fs'); fs.mkdirSync('dist', {recursive:true}); fs.readdirSync('.').forEach(f => { if(f!=='dist' && f!=='node_modules') fs.cpSync(f, 'dist/'+f, {recursive:true}); })\"",
+    "start": "serve dist -p 3000"
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  }
+}
