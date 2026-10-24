@@ -232,19 +232,9 @@
 <!-- End of headEnd -->
 
 <style data-smooth-scroll="">
-html { scroll-behavior: smooth; }
-
-/* hide template badge */
-#__framer-badge-container{display:none!important}
-
-/* runtime-independent visibility */
+/* reveal content the runtime never fades in */
 [data-framer-appear-id]{opacity:1!important}
 section[style*="opacity:0.001"]{opacity:1!important}
-li>div[style*="visibility:hidden"]{visibility:visible!important}
-/* keep the carousels moving without the runtime */
-@keyframes mf-marquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
-ul[style*="cursor:grab"],ul[style*="cursor: grab"]{animation:mf-marquee 45s linear infinite;will-change:transform}
-@media(prefers-reduced-motion:reduce){ul[style*="cursor:grab"],ul[style*="cursor: grab"]{animation:none}}
 </style>
 <style data-custom-cursor="">
 html, body { cursor: url("_external/cursor.png") 27 18, auto; }
