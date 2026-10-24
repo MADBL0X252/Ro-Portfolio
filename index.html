@@ -232,9 +232,11 @@
 <!-- End of headEnd -->
 
 <style data-smooth-scroll="">
-/* reveal content the runtime never fades in */
-[data-framer-appear-id]{opacity:1!important}
-section[style*="opacity:0.001"]{opacity:1!important}
+/* reveal content without the runtime — these only ever show things */
+[style*="opacity:0.001"]{opacity:1!important}
+[style*="opacity: 0.001"]{opacity:1!important}
+.framer-17mxa93-container{visibility:visible!important}
+li.ticker-item,li.ticker-item>div{visibility:visible!important;opacity:1!important}
 </style>
 <style data-custom-cursor="">
 html, body { cursor: url("_external/cursor.png") 27 18, auto; }
