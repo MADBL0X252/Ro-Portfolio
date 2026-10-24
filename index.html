@@ -274,5 +274,134 @@ input[type="range"], .framer-cursor-grab, [style*="cursor:grab"], [style*="curso
 </div>
 <!-- Start of bodyEnd -->
 <!-- End of bodyEnd -->
-<script data-appear-fallback="">(()=>{function f(){var e=[].slice.call(document.querySelectorAll("[data-framer-appear-id],section"));e.forEach(function(n){var r=n.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;if(parseFloat(getComputedStyle(n).opacity)>=.05)return;n.style.opacity="1";[].slice.call(n.querySelectorAll("li > div")).forEach(function(d){if(getComputedStyle(d).visibility==="hidden")d.style.visibility="visible"})})}addEventListener("load",function(){setTimeout(f,2500)});addEventListener("scroll",function(){clearTimeout(window.__afT);window.__afT=setTimeout(f,1200)},{passive:true})})()</script></body>
+<script data-appear-fallback="">(()=>{function f(){var e=[].slice.call(document.querySelectorAll("[data-framer-appear-id],section"));e.forEach(function(n){var r=n.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;if(parseFloat(getComputedStyle(n).opacity)>=.05)return;n.style.opacity="1";[].slice.call(n.querySelectorAll("li > div")).forEach(function(d){if(getComputedStyle(d).visibility==="hidden")d.style.visibility="visible"})})}addEventListener("load",function(){setTimeout(f,2500)});addEventListener("scroll",function(){clearTimeout(window.__afT);window.__afT=setTimeout(f,1200)},{passive:true})})()</script><script data-carousel-controls="">
+/* Local carousel controls. The exported page ships the track plus Previous and
+   Next buttons, but nothing drives them, so they sit there looking clickable and
+   doing nothing. This moves the track sideways, clamped to its real overflow, so
+   dragging and the arrows behave the way they look. Nothing here touches
+   visibility; the worst case is a track that does not move. */
+(function () {
+  "use strict";
+  var built = [];
+
+  function slidesOf(ul) {
+    return Array.prototype.filter.call(ul.children, function (el) {
+      return el.getBoundingClientRect().width > 1;
+    });
+  }
+
+  function metrics(ul) {
+    var slides = slidesOf(ul);
+    if (slides.length < 2) return null;
+    var first = slides[0].getBoundingClientRect();
+    var last = slides[slides.length - 1].getBoundingClientRect();
+    var step = slides[1].getBoundingClientRect().left - first.left;
+    if (!(step > 1)) return null;
+    var total = last.right - first.left;
+    var view = ul.getBoundingClientRect().width;
+    if (total <= view + 24) return null;
+    var max = Math.max(0, total - view);
+    return { step: step, max: max, count: Math.max(1, Math.ceil(max / step)) };
+  }
+
+  function build(ul, prev, next) {
+    var m = metrics(ul);
+    if (!m) return null;
+    var car = { ul: ul, m: m, index: 0, apply: apply };
+    function apply(animate) {
+      var shift = Math.min(car.index * car.m.step, car.m.max);
+      if (shift < 0) shift = 0;
+      ul.style.transition = animate === false ? "none" : "transform 480ms cubic-bezier(.4,0,.2,1)";
+      ul.style.transform = "translateX(" + (-shift) + "px)";
+    }
+    ul.style.willChange = "transform";
+    if (next) next.addEventListener("click", function (e) {
+      e.preventDefault();
+      car.index = car.index >= car.m.count ? 0 : car.index + 1;
+      apply();
+    });
+    if (prev) prev.addEventListener("click", function (e) {
+      e.preventDefault();
+      car.index = car.index <= 0 ? car.m.count : car.index - 1;
+      apply();
+    });
+    var down = false, startX = 0, startShift = 0, moved = 0;
+    ul.addEventListener("pointerdown", function (e) {
+      if (e.pointerType === "touch" || e.button !== 0) return;
+      down = true; moved = 0; startX = e.clientX;
+      startShift = Math.min(car.index * car.m.step, car.m.max);
+      ul.style.transition = "none";
+    });
+    addEventListener("pointermove", function (e) {
+      if (!down) return;
+      moved = e.clientX - startX;
+      var t = startShift - moved;
+      if (t > 0) t = 0;
+      if (t < -car.m.max) t = -car.m.max;
+      ul.style.transform = "translateX(" + t + "px)";
+    }, { passive: true });
+    addEventListener("pointerup", function () {
+      if (!down) return;
+      down = false;
+      var t = startShift - moved;
+      if (t > 0) t = 0;
+      if (t < -car.m.max) t = -car.m.max;
+      car.index = Math.round(-t / car.m.step);
+      if (car.index < 0) car.index = 0;
+      if (car.index > car.m.count) car.index = car.m.count;
+      apply();
+    }, { passive: true });
+    built.push(car);
+    return car;
+  }
+
+  function run() {
+    try {
+      var wired = [];
+      Array.prototype.forEach.call(
+        document.querySelectorAll('button[aria-label="Next"]'),
+        function (btn) {
+          var scope = btn.closest("section");
+          if (!scope) return;
+          var uls = scope.querySelectorAll("ul"), ul = null, i;
+          for (i = 0; i < uls.length; i++) {
+            if ((uls[i].getAttribute("style") || "").indexOf("cursor:grab") !== -1) { ul = uls[i]; break; }
+          }
+          if (!ul) {
+            var best = 0;
+            for (i = 0; i < uls.length; i++) {
+              if (uls[i].children.length > best) { best = uls[i].children.length; ul = uls[i]; }
+            }
+          }
+          if (!ul || wired.indexOf(ul) !== -1) return;
+          wired.push(ul);
+          build(ul, scope.querySelector('button[aria-label="Previous"]'), btn);
+        }
+      );
+      /* tracks that carry grab affordances but no buttons */
+      Array.prototype.forEach.call(document.querySelectorAll("ul"), function (ul) {
+        if (wired.indexOf(ul) !== -1) return;
+        var grabs = (ul.getAttribute("style") || "").indexOf("cursor:grab") !== -1;
+        var cards = ul.querySelector(".framer-s7xxyy, .framer-17mxa93-container");
+        if (!grabs && !cards) return;
+        build(ul, null, null);
+      });
+    } catch (err) {
+      /* leave the page exactly as it was */
+    }
+  }
+
+  function refresh() {
+    for (var i = 0; i < built.length; i++) {
+      var car = built[i];
+      var m = metrics(car.ul);
+      if (m) { car.m = m; car.apply(true); }
+    }
+  }
+
+  if (document.readyState === "complete") run();
+  else addEventListener("load", run, { once: true });
+  addEventListener("resize", refresh, { passive: true });
+})();
+</script></body>
 </html>
