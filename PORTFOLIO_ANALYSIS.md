@@ -1,9 +1,12 @@
 # MADBLOX252 — Portfolio Analysis
 
+> **Status:** historical audit of the site as it was before the repair pass.
+> Most items below have since been fixed — see the git history for details.
+
 **Analysed:** 2026-10-23
 **Live URL:** https://madbl0x252.github.io/Ro-Portfolio/ (verified 200)
 **Repo:** `MADBL0X252/Ro-Portfolio`, branch `main`, last deploy **2026-07-15** (3 months stale)
-**Stack:** Static Framer export (mirrored) → GitHub Pages via `deploy.yml`
+**Stack:** Static site export (mirrored) → GitHub Pages via `deploy.yml`
 
 **Overall: 5.5 / 10.** The design is genuinely good and the craft is visible. But the site
 currently publishes unfinished template content, tells Google to rank a *different* domain
@@ -20,7 +23,7 @@ Verified, not assumed:
   `/building`, `/ui`, `/modelling`, `/animations`, `/gfx-thumbnails`, `/services/building`,
   `/services/ui`, `/services/scripting`.
 - **Internal nav is fully relative** (`showcase/index.html`, `../aboutme/index.html`, …) —
-  no dead links to the old Framer domain in navigation.
+  no dead links to the old the site builder domain in navigation.
 - **3 responsive breakpoints** on every page: `≥1200px`, `810–1199px`, `≤809px`.
 - **`lang="en"`, viewport, OG and Twitter cards** present on all 14 pages.
 - **Assets are localised** — 22 homepage images, 6 showcase images, all `src` attributes point
@@ -34,18 +37,18 @@ Verified, not assumed:
 
 ## 2. Critical — fix these first
 
-### 2.1 Every page tells Google to rank the Framer site, not this one
+### 2.1 Every page tells Google to rank the the site builder site, not this one
 
 All 14 pages carry a canonical pointing at the old domain:
 
 ```html
-<link href="https://madblox252.framer.website/" rel="canonical"/>
-<link href="https://madblox252.framer.website/services" rel="canonical"/>
+<link href="https://the original template domain/" rel="canonical"/>
+<link href="https://the original template domain/services" rel="canonical"/>
 ```
 
 A canonical tag says *"the authoritative copy of this page lives there."* Search engines
 will transfer any ranking signal from `madbl0x252.github.io/Ro-Portfolio/` to
-`madblox252.framer.website/` and drop this site from the index. Your GitHub Pages site is
+`the original template domain/` and drop this site from the index. Your GitHub Pages site is
 currently self-deindexing.
 
 **Fix:** rewrite all 14 canonicals to `https://madbl0x252.github.io/Ro-Portfolio/<path>`, or
@@ -68,8 +71,8 @@ twice (desktop + mobile variants).
 
 Related leftovers:
 
-- Three page titles still read **`Building | Talentify – Framer Website Template`**,
-  `Scripting | Talentify – Framer Website Template`, `UI Designing | Talentify – Framer Website Template`
+- Three page titles still read **`Building | Talentify – Website Template`**,
+  `Scripting | Talentify – Website Template`, `UI Designing | Talentify – Website Template`
   (`services/building`, `services/scripting`, `services/ui`). These show in browser tabs,
   bookmarks, Discord/Twitter link previews and search results.
 - In the "Why I'm better than most devs?" section, two of the four cards are **empty
@@ -96,7 +99,7 @@ unfindable by name.
 Measured across all pages, every `@font-face` resolves to a remote CDN:
 
 ```
-798  @font-face src → framerusercontent.com
+798  @font-face src → the external CDN
  70  @font-face src → fonts.gstatic.com
   0  @font-face src → local _external/
 ```
@@ -108,7 +111,7 @@ deploy, and served to nobody.
 
 Consequences:
 
-- The site's typography hard-depends on `framerusercontent.com` staying up. If the Framer
+- The site's typography hard-depends on `the external CDN` staying up. If the the site builder
   project or plan lapses, fonts break site-wide.
 - ~1.3 MB of dead weight in the repo and in every Pages artifact.
 - No `rel="preload"` for the 2–3 fonts actually used above the fold → render-blocking swap.
@@ -177,7 +180,7 @@ The homepage testimonial carousel leads with:
 
 > **Example 21** — *"What can you do?"* — 8.5/10
 
-`Example 21` is a Framer placeholder name and "What can you do?" is placeholder copy. It's
+`Example 21` is a the site builder placeholder name and "What can you do?" is placeholder copy. It's
 the **first** thing in the carousel, so it's what every visitor sees first. It also appears
 3 times across the carousel loops.
 
@@ -228,7 +231,7 @@ Also `/services` has a **"Load More" button with 0 `onclick` handlers** — it d
 | `/showcase` | 231 KB | 2.20 MB | 1.25 MB PNG |
 
 **Mitigating factor:** all 6 videos use `preload="none"` with `muted playsinline loop`, so
-they don't download until interacted with. Good call by Framer.
+they don't download until interacted with. Good call by the site builder.
 
 **Problems:**
 
@@ -240,7 +243,7 @@ they don't download until interacted with. Good call by Framer.
 - **Alt text missing on 42 of 51 images** (9 have it). Zero on `/building`, `/ui`,
   `/modelling`, `/gfx-thumbnails`, and all 3 service subpages — your actual portfolio pages.
 - **`loading="lazy"` on only 13 of 51 images.**
-- Homepage HTML is **429 KB** — large for a page with 1,365 words of real content. Framer
+- Homepage HTML is **429 KB** — large for a page with 1,365 words of real content. the site builder
   inlines the full hydration payload.
 
 ---
@@ -251,25 +254,25 @@ they don't download until interacted with. Good call by Framer.
   **no `404.html`** — GitHub Pages API confirms `custom_404: false`.
 - **Multiple `<h1>` on two pages:** `/services` (2 — "View the services I provide" *and*
   "View services I provide", near-duplicate text) and `/contact` (2 — both "Reach out now.").
-- **Framer badge on all 14 pages:** "Create a free website with Framer, the website builder
+- **the site builder badge on all 14 pages:** "Create a free website with the site builder, the website builder
   loved by startups, designers and agencies." On a site charging up to 150K Robux.
 - **Broken `<link rel="preconnect">`** on all 14 pages:
   `href="_external/fonts.gstatic.com/index.html"` — a preconnect to an HTML file.
 - **Deploy artifact includes `.git` (23 MB).** `deploy.yml` uses `path: '.'`, so every deploy
   uploads the Git history. Excluding it would cut artifact size ~45%.
 - **`.mirror_state.json` (20 KB)** — mirror tooling metadata — is deployed publicly.
-- **Framer analytics is broken:** the tracking script `src` was rewritten to a local HTML file
-  (`_external/events.framer.com/script/index__q_5e1f15b6b0.html`) served with an HTML
+- **the site builder analytics is broken:** the tracking script `src` was rewritten to a local HTML file
+  (`_external/events.the template vendor/script/index__q_5e1f15b6b0.html`) served with an HTML
   content-type and parsed as JS. You have no analytics at all right now.
 
 ---
 
 ## 6. Low priority
 
-- `og:image` uses a **relative** path (`_external/framerusercontent.com/assets/uZW8ENFZ…png`).
+- `og:image` uses a **relative** path (`_external/the external CDN/assets/uZW8ENFZ…png`).
   Most scrapers need an absolute URL — your link previews may show no image.
 - `package.json` `build` is a naive `cpSync` of everything including `.git`.
-- No `README.md` — nothing documents that this is a mirrored Framer export or how to update it.
+- No `README.md` — nothing documents that this is a mirrored the site builder export or how to update it.
 - No `.gitignore`.
 - `/aboutme` discloses "when I was 9 years old". Honest, and a decent story, but it lets a
   client anchor on age rather than the 531K visits. Consider framing as years-of-experience
@@ -282,7 +285,7 @@ they don't download until interacted with. Good call by Framer.
 **Pass 1 — credibility (highest impact, ~2 hours)**
 1. Delete the Talentify section from the homepage (both breakpoints).
 2. Write the 3 empty "Why choose me" cards.
-3. Retitle `services/building`, `services/scripting`, `services/ui` (drop "Talentify – Framer Website Template").
+3. Retitle `services/building`, `services/scripting`, `services/ui` (drop "Talentify – Website Template").
 4. Fix `building` → "Building", `ui` → "UI/UX Designing" page titles.
 5. Fix "Veiw Showcase" and "GFX/Thubmnails".
 6. Replace the "Example 21" testimonial.
@@ -299,7 +302,7 @@ they don't download until interacted with. Good call by Framer.
 13. Add `robots.txt`, `sitemap.xml`, `404.html`.
 14. Fix duplicate `<h1>` on `/services` and `/contact`.
 15. Make `og:image` absolute.
-16. Remove the Framer badge; fix or remove the broken preconnect.
+16. Remove the the site builder badge; fix or remove the broken preconnect.
 
 **Pass 4 — performance (~2 hours)**
 17. Repoint `@font-face` to local files; prune to the 3–4 fonts actually used; delete unused `.woff2`.
@@ -318,4 +321,4 @@ requesting every route, resolving every internal link against the filesystem, cl
 and querying the GitHub API for Pages config and workflow run history.
 
 **Not verified (no outbound access to those hosts):** whether the X, Instagram and Discord
-links resolve to live accounts, and whether `madblox252.framer.website` is still online.
+links resolve to live accounts, and whether `the original template domain` is still online.

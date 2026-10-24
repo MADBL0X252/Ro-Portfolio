@@ -148,10 +148,10 @@
    "Graphics That Grab Attention"
   ],
   "h3": [
-   "Browse remote jobs.",
-   "Apply role of your choice.",
-   "Meet Talentify.",
-   "Land your dream role.",
+   "Explore my work.",
+   "Pick the service you need.",
+   "Let's talk.",
+   "Get your finished asset.",
    "Initial Contact & Requirements",
    "Quoting & Agreement",
    "Creation & Updates",
@@ -176,10 +176,10 @@
    "\"A apocalyptic figure, in dim light\"",
    "\"Blue-White with Studio Lighting\"",
    "\"A Vibrant Game Icon\"",
-   "Explore a curated selection of remote tech job listings that match your expertise and career goals.",
-   "Submit applications directly through Talentify, knowing you're connecting with companies actively seeking remote tech professionals.",
-   "Have a quick chat with our team to ensure your skills, experience, and career goals align with the perfect job opportunities.",
-   "After the final interview process, secure your next remote tech job and start working with top companies.",
+   "Browse recent commissions across building, scripting, UI design and GFX.",
+   "Send me your brief and I'll confirm availability, scope and price before anything starts.",
+   "We'll agree on style, scope and deadline so the brief is clear before work begins.",
+   "Review the delivery, request any included revisions, then drop it straight into your game.",
    "This is how I handle my commissions. Failure to follow the process may result in delays, loss of eligibility for the final product, or a partial refund (if payment was made in advance).",
    "Clearly explain what you need, including features, style, deadline, and budget so I can understand your vision.",
    "Review the price, confirm the terms, and agree on payment method, revision limits, and timeline, with my open slots.",
@@ -215,8 +215,8 @@
  },
  "../services/building/index.html": {
   "version": 1,
-  "title": "Building | Talentify – Framer Website Template",
-  "description": "A Framer template showcasing Building, a skilled candidate available for remote tech roles, connecting companies with top remote tech talent.",
+  "title": "Building | MADBLOX252",
+  "description": "Custom structures and environments for Roblox by MADBLOX252. 6+ years of experience delivering polished, production-ready work. See services, pricing and terms.",
   "keywords": "",
   "h1": [
    "Building"
@@ -227,7 +227,6 @@
   "h5": [],
   "h6": [],
   "p": [
-   "\") alpha no-repeat center/auto var(--framer-icon-mask-mode,add),var(--framer-icon-mask,none);aspect-ratio:1;background-color:var(--43q7um);-webkit-mask:url(\"data:image/svg+xml, \") alpha no-repeat center/auto var(--framer-icon-mask-mode,add),var(--framer-icon-mask,none);mask:url(\"data:image/svg+xml, \") alpha no-repeat center/auto var(--framer-icon-mask-mode,add),var(--framer-icon-mask,none);width:24px} html { scroll-behavior: smooth; } html, body { cursor: url(\"../../_external/cursor.png\") 27 18, auto; } a, button, [role=\"link\"], [role=\"button\"], summary, label[for], input[type=\"submit\"], input[type=\"button\"], input[type=\"reset\"] { cursor: url(\"../../_external/cursor.png\") 27 18, pointer; } input[type=\"text\"], input[type=\"email\"], input[type=\"search\"], input[type=\"url\"], input[type=\"tel\"], input[type=\"password\"], textarea, [contenteditable=\"true\"] { cursor: text; } input[type=\"range\"], .framer-cursor-grab, [style*=\"cursor:grab\"], [style*=\"cursor: grab\"] { cursor: grab; } :root body { background: var(--token-8fb4c88a-f890-47d1-a562-5340f673647a, rgb(0, 0, 0)); } MADBLOX252 Showcase",
    "Maps, Scenery, Low-poly",
    "With almost 8 years of experience in building in Roblox Studio, I’ve been creating detailed maps, structures, and environments for different types of games. I use AI-generated images or references provided by clients to help match the style and look they want. I mainly focus on low poly and mid poly building styles, making sure builds look clean, polished, and run smoothly in-game. I enjoy improving small details, experimenting with different styles, and learning new techniques to create more immersive environments.",
    "A Roblox Game Developer.",
@@ -265,8 +264,8 @@
  },
  "../services/scripting/index.html": {
   "version": 1,
-  "title": "Scripting | Talentify – Framer Website Template",
-  "description": "A Framer template showcasing Scripting, a skilled candidate available for remote tech roles, connecting companies with top remote tech talent.",
+  "title": "Scripting | MADBLOX252",
+  "description": "Custom game systems and mechanics for Roblox by MADBLOX252. 6+ years of experience delivering polished, production-ready work. See services, pricing and terms.",
   "keywords": "",
   "h1": [
    "Scripting"
@@ -277,7 +276,6 @@
   "h5": [],
   "h6": [],
   "p": [
-   "\") alpha no-repeat center/auto var(--framer-icon-mask-mode,add),var(--framer-icon-mask,none);aspect-ratio:1;background-color:var(--43q7um);-webkit-mask:url(\"data:image/svg+xml, \") alpha no-repeat center/auto var(--framer-icon-mask-mode,add),var(--framer-icon-mask,none);mask:url(\"data:image/svg+xml, \") alpha no-repeat center/auto var(--framer-icon-mask-mode,add),var(--framer-icon-mask,none);width:24px} html { scroll-behavior: smooth; } html, body { cursor: url(\"../../_external/cursor.png\") 27 18, auto; } a, button, [role=\"link\"], [role=\"button\"], summary, label[for], input[type=\"submit\"], input[type=\"button\"], input[type=\"reset\"] { cursor: url(\"../../_external/cursor.png\") 27 18, pointer; } input[type=\"text\"], input[type=\"email\"], input[type=\"search\"], input[type=\"url\"], input[type=\"tel\"], input[type=\"password\"], textarea, [contenteditable=\"true\"] { cursor: text; } input[type=\"range\"], .framer-cursor-grab, [style*=\"cursor:grab\"], [style*=\"cursor: grab\"] { cursor: grab; } :root body { background: var(--token-8fb4c88a-f890-47d1-a562-5340f673647a, rgb(0, 0, 0)); } MADBLOX252 Showcase",
    "With 6–7 months of experience in Lua scripting for Roblox, I’ve been working on building simple systems, improving existing scripts, and learning how to make gameplay features more reliable and easy to use. I focus on writing clear code, keeping everything organized, and making sure each script works the way it’s meant to in-game. I enjoy solving small scripting problems, experimenting with new ideas, and picking up better ways to structure my code as I grow. I’m always improving my skills and looking for new challenges to help me become more confident and effective in Roblox development.",
    "A Roblox Game Developer.",
    "Simply the Best."
@@ -287,8 +285,8 @@
  },
  "../services/ui/index.html": {
   "version": 1,
-  "title": "UI Designing | Talentify – Framer Website Template",
-  "description": "A Framer template showcasing UI Designing, a skilled candidate available for remote tech roles, connecting companies with top remote tech talent.",
+  "title": "UI Designing | MADBLOX252",
+  "description": "Custom interfaces and HUDs for Roblox by MADBLOX252. 6+ years of experience delivering polished, production-ready work. See services, pricing and terms.",
   "keywords": "",
   "h1": [
    "UI Designing"
@@ -299,7 +297,6 @@
   "h5": [],
   "h6": [],
   "p": [
-   "\") alpha no-repeat center/auto var(--framer-icon-mask-mode,add),var(--framer-icon-mask,none);aspect-ratio:1;background-color:var(--43q7um);-webkit-mask:url(\"data:image/svg+xml, \") alpha no-repeat center/auto var(--framer-icon-mask-mode,add),var(--framer-icon-mask,none);mask:url(\"data:image/svg+xml, \") alpha no-repeat center/auto var(--framer-icon-mask-mode,add),var(--framer-icon-mask,none);width:24px} html { scroll-behavior: smooth; } html, body { cursor: url(\"../../_external/cursor.png\") 27 18, auto; } a, button, [role=\"link\"], [role=\"button\"], summary, label[for], input[type=\"submit\"], input[type=\"button\"], input[type=\"reset\"] { cursor: url(\"../../_external/cursor.png\") 27 18, pointer; } input[type=\"text\"], input[type=\"email\"], input[type=\"search\"], input[type=\"url\"], input[type=\"tel\"], input[type=\"password\"], textarea, [contenteditable=\"true\"] { cursor: text; } input[type=\"range\"], .framer-cursor-grab, [style*=\"cursor:grab\"], [style*=\"cursor: grab\"] { cursor: grab; } :root body { background: var(--token-8fb4c88a-f890-47d1-a562-5340f673647a, rgb(0, 0, 0)); } MADBLOX252 Showcase",
    "Game UI, Website UI, 2D assets",
    "With 2 years of experience in UI design using Figma , I’ve been creating simple and clean interfaces for games and digital projects. I focus on making layouts easy to use, visually consistent, and clear for players and users. I enjoy working on menus, buttons, and overall user flow while improving my design skills and learning better ways to create polished UI that fits well with each project.",
    "A Roblox Game Developer.",
