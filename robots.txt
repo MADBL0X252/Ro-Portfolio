@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://madbl0x252.github.io/Ro-Portfolio/sitemap.xml
